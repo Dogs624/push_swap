@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/14 15:31:01 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:09:30 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	check_leaks(void);
 t_stack	*ft_create_stack(int argc, char **argv);
 void	ft_free_stack(t_stack *stack);
 void	ft_display_stack(t_stack *stack);
+int		error_handling(int argc, char **argv);
 
 #endif

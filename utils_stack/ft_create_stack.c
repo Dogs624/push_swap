@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/14 15:29:22 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:10:01 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	*ft_create_stack(int argc, char **argv)
 	ret->first = NULL;
 	while ((i) >= 1)
 	{
-		if(!ft_push(ret, ft_atoi(argv[i])))
+		if (!ft_push(ret, ft_atoi(argv[i])))
 		{
 			ft_free_stack(ret);
 			return (NULL);
