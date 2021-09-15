@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/09/15 12:59:35 by jvander-         ###   ########.fr        #
+#    Updated: 2021/09/15 13:22:00 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ FLAGS	=	-Wall -Werror -Wextra $(INCLUDES)
 SRCS_OPERATIONS		=	$(OPERATIONS)ft_push_stack.c \
 						$(OPERATIONS)ft_swap.c \
 						$(OPERATIONS)ft_rotate.c \
+						$(OPERATIONS)ft_reverse.c \
 
 SRCS_UTILS_STACK	=	$(UTILS)ft_push.c \
 						$(UTILS)ft_create_stack.c \
