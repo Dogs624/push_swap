@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_stack.c                                    :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 14:55:18 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:17:25 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/15 11:52:29 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/15 12:12:04 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_free_stack(t_stack *stack)
+void	ft_swap(t_stack *stack)
 {
-	t_node	*del;
+	t_node	*first;
+	t_node	*second;
+	t_node	*tmp;
 
 	if (!stack->first)
-	{
-		free(stack);
 		return ;
-	}
-	del = stack->first;
-	if (stack->first)
-		stack->first = stack->first->next;
-	while (del && stack->first)
-	{
-		free(del);
-		del = stack->first;
-		if (stack->first)
-			stack->first = stack->first->next;
-	}
-	free(del);
-	free(stack);
+	if (!stack->first->next)
+		return ;
+	first = stack->first;
+	second = stack->first->next;
+	tmp = second->next;
+	stack->first = second;
+	second->next = first;
+	first->next = tmp;
 }

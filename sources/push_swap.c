@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 11:44:47 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:13:01 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,8 @@ int	main(int argc, char **argv)
 		ft_free_stack(stack_a);
 		exit(1);
 	}
-	if (!ft_push_stack(stack_a, stack_b))
-	{
-		ft_free_stack(stack_a);
-		ft_free_stack(stack_b);
-		exit(1);
-	}
-	if (!ft_push_stack(stack_a, stack_b))
-	{
-		ft_free_stack(stack_a);
-		ft_free_stack(stack_b);
-		exit(1);
-	}
-	if (!ft_push_stack(stack_b, stack_a))
-	{
-		ft_free_stack(stack_a);
-		ft_free_stack(stack_b);
-		exit(1);
-	}
+	ft_swap(stack_a);
+	ft_swap(stack_b);
 	printf("=====a=====\n");
 	ft_display_stack(stack_a);
 	printf("=====b=====\n");
