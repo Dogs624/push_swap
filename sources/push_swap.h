@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:03:00 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:59:15 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_stack	*ft_init_stack(void);
 t_node	*ft_pop(t_stack *stack);
 int		ft_push_stack(t_stack *stack_in, t_stack *stack_out);
 void	ft_swap(t_stack *stack);
+void	ft_rotate(t_stack *stack);
 
 #endif
