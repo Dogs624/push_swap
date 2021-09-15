@@ -6,11 +6,11 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:16:19 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 11:26:00 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:50:15 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../sources/push_swap.h"
 
 int	ft_push_stack(t_stack *stack_in, t_stack *stack_out)
 {
