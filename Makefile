@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/09/14 16:14:06 by jvander-         ###   ########.fr        #
+#    Updated: 2021/09/15 11:24:56 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,13 @@ SRCS_UTILS_STACK	=	$(UTILS)ft_push.c \
 						$(UTILS)ft_create_stack.c \
 						$(UTILS)ft_free_stack.c \
 						$(UTILS)ft_display_stack.c \
+						$(UTILS)ft_init_stack.c \
+						$(UTILS)ft_pop.c \
 
 SRCS	=	$(SOURCES)leacks_cheker_ex.c \
 			$(SOURCES)push_swap.c \
-			$(SOURCES)error_handling.c
+			$(SOURCES)error_handling.c \
+			$(SOURCES)ft_push_stack.c \
 
 %.o: %.c
 		$(CC) $(FLAGS) -o $@ -c $<

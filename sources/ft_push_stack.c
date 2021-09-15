@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_stack.c                                  :+:      :+:    :+:   */
+/*   ft_push_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 09:44:45 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/15 11:16:19 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/15 11:26:00 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../sources/push_swap.h"
+#include "push_swap.h"
 
-t_stack	*ft_create_stack(int argc, char **argv)
+int	ft_push_stack(t_stack *stack_in, t_stack *stack_out)
 {
-	t_stack	*ret;
-	int		i;
+	t_node	*node;
 
-	i = argc - 1;
-	ret = ft_init_stack();
-	if (!ret)
-		return (NULL);
-	while (i >= 1)
-	{
-		if (!ft_push(ret, ft_atoi(argv[i])))
-		{
-			ft_free_stack(ret);
-			return (NULL);
-		}
-		i--;
-	}
-	return (ret);
+	node = ft_pop(stack_in);
+	if (!ft_push(stack_out, node->data))
+		return (0);
+	free(node);
+	return (1);
 }

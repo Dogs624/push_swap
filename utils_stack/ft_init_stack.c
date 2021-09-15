@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_stack.c                                  :+:      :+:    :+:   */
+/*   ft_init_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 09:44:45 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/14 16:47:36 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/15 10:42:15 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-t_stack	*ft_create_stack(int argc, char **argv)
+t_stack	*ft_init_stack(void)
 {
-	t_stack	*ret;
-	int		i;
+	t_stack	*stack;
 
-	i = argc - 1;
-	ret = ft_init_stack();
-	if (!ret)
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
 		return (NULL);
-	while (i >= 1)
-	{
-		if (!ft_push(ret, ft_atoi(argv[i])))
-		{
-			ft_free_stack(ret);
-			return (NULL);
-		}
-		i--;
-	}
-	return (ret);
+	stack->first = NULL;
+	return (stack);
 }

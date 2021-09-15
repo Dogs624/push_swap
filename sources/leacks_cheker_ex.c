@@ -8,29 +8,29 @@
 #include <string.h>
 #include <stdlib.h>
 
-int malloc_counter = 0;
+int g_malloc_counter = 0;
 
-#define line_len 1024
+#define LINE_LEN 1024
 typedef struct s_call {
-    long address;
-    unsigned long size;
-    char line[line_len];
+    long             address;
+    unsigned long   size;
+    char line[LINE_LEN];
 } t_call;
 
 #define array_size 1024
 t_call allocs_array[array_size];
 
-static int total_leaks_size();
+static int  total_leaks_size();
 static void print_allocs();
 
 // ================================== PUBLIC ==================================
 
 void check_leaks() {
-    if (malloc_counter != 0) {
+    if (g_malloc_counter != 0) {
         int total = total_leaks_size();
         fprintf(stderr,
                 "\nLEAKS: there are %d leaks. TOTAL size: %d bytes\n\n",
-                malloc_counter, total);
+                g_malloc_counter, total);
         print_allocs();
     }
 }
@@ -119,7 +119,7 @@ static void cp_stack(char *dst, char **s_arr, int size) {
         char *function = split_to_only_func(s_arr[i]);
         int current_len = strlen(function);
         total_len += current_len;
-        if (total_len + 2 > line_len)
+        if (total_len + 2 > LINE_LEN)
             return;
         if (total_len != current_len) {
             dst[0] = '\n';
@@ -148,7 +148,7 @@ void *malloc(unsigned long size) {
     cp_stack(call.line, strs, frames);
 
     add_call(&call);
-    malloc_counter++;
+    g_malloc_counter++;
     return p;
 }
 
@@ -166,5 +166,5 @@ void free(void *p) {
 
     remove_call((long)p);
     real_free(p);
-    malloc_counter--;
+    g_malloc_counter--;
 }
