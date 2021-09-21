@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:56:14 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/14 16:35:56 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/21 09:26:32 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,21 @@ static int	ft_duplicate(int argc, char **argv)
 	return (0);
 }
 
+static int	ft_check_long(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_atoi(argv[i]) >= INT_MAX
+			|| ft_atoi(argv[i]) <= INT_MIN)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	error_handling(int argc, char **argv)
 {
 	if (argc <= 1)
@@ -67,6 +82,8 @@ int	error_handling(int argc, char **argv)
 	if (!all_number(argc, argv))
 		return (1);
 	if (ft_duplicate(argc, argv))
+		return (1);
+	if (!ft_check_long(argc, argv))
 		return (1);
 	return (0);
 }

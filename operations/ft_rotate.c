@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 12:38:55 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 13:03:05 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:32:57 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ void	ft_rotate(t_stack *stack)
 	while (last->next)
 		last = last->next;
 	last->next = first;
+	if (stack->name == 'a')
+		ft_putstr("ra\n");
+	else
+		ft_putstr("rb\n");
 }

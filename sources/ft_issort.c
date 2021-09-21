@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_stack.c                                  :+:      :+:    :+:   */
+/*   ft_issort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 10:09:45 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/15 14:18:41 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/15 14:46:09 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../sources/push_swap.h"
+#include "push_swap.h"
 
-t_stack	*ft_create_stack(int argc, char **argv)
+int	ft_issort(t_stack *stack)
 {
-	t_stack	*ret;
-	int		i;
+	t_node	*current;
 
-	i = argc - 1;
-	ret = ft_init_stack();
-	if (!ret)
-		return (NULL);
-	while (i >= 1)
+	if (!stack->first)
+		return (1);
+	if (!stack->first->next)
+		return (1);
+	current = stack->first;
+	while (current->next)
 	{
-		if (!ft_push(ret, ft_atoi(argv[i])))
-		{
-			ft_free_stack(ret);
-			return (NULL);
-		}
-		i--;
+		if (current->data > current->next->data)
+			return (0);
+		current = current->next;
 	}
-	ft_create_index(ret);
-	return (ret);
+	return (1);
 }

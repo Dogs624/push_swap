@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 13:13:53 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 13:24:46 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:33:09 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ void	ft_reverse(t_stack *stack)
 	stack->first = last->next;
 	stack->first->next = first;
 	last->next = NULL;
+	if (stack->name == 'a')
+		ft_putstr("rra\n");
+	else
+		ft_putstr("rrb\n");
 }

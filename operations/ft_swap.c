@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:29 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:12:04 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:33:16 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,8 @@ void	ft_swap(t_stack *stack)
 	stack->first = second;
 	second->next = first;
 	first->next = tmp;
+	if (stack->name == 'a')
+		ft_putstr("sa\n");
+	else
+		ft_putstr("sb\n");
 }

@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_stack.c                                  :+:      :+:    :+:   */
+/*   ft_create_index.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 10:09:45 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/21 09:16:21 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/21 10:10:18 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-t_stack	*ft_create_stack(int argc, char **argv)
+void	ft_create_index(t_stack *stack)
 {
-	t_stack	*ret;
-	int		i;
+	int		idx;
+	int		size_stack;
+	t_node	*tmp;
+	t_node	*min;
 
-	i = argc - 1;
-	ret = ft_init_stack();
-	if (!ret)
-		return (NULL);
-	while (i >= 1)
+	size_stack = ft_stack_size(stack);
+	idx = 0;
+	while (idx < size_stack)
 	{
-		if (!ft_push(ret, ft_atoi(argv[i])))
-		{
-			ft_free_stack(ret);
-			return (NULL);
-		}
-		i--;
+		min = ft_get_min(stack);
+		tmp = stack->first;
+		while (tmp->data != min->data)
+			tmp = tmp->next;
+		tmp->index = idx;
+		idx++;
 	}
-	ft_create_index(ret);
-	return (ret);
 }
