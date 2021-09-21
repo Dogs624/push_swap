@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:38:43 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 13:28:16 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:25:42 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ static int	markup(t_stack *stack, int try)
 
 void	markup_greater(t_stack *stack)
 {
-
 	int		i;
 	t_node	*tmp;
-	
+
 	tmp = stack->first;
 	i = 0;
 	while (i < ft_stack_size(stack))
@@ -66,4 +65,3 @@ void	markup_greater(t_stack *stack)
 		tmp = tmp->next;
 	}
 }
-

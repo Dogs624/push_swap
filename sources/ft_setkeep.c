@@ -6,17 +6,17 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 13:47:13 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:17:51 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:24:09 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_node*	get_head(t_stack *stack)
+static t_node	*get_head(t_stack *stack)
 {
 	t_node	*tmp;
 	t_node	*ret;
-	
+
 	tmp = stack->first->next;
 	ret = stack->first;
 	while (tmp)
@@ -39,7 +39,7 @@ void	ft_setkeep(t_stack *stack)
 	int		i;
 	t_node	*higher;
 	t_node	*start;
-	
+
 	markup_greater(stack);
 	head = get_head(stack);
 	start = head;
