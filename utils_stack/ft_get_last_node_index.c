@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_get_last_node_index.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 12:38:55 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 15:35:23 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/23 13:34:48 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/23 13:35:56 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_rotate(t_stack *stack, char *op)
+int	ft_get_last_node_index(t_stack *stack)
 {
-	t_node	*last;
-	t_node	*first;
+	t_node	*tmp;
 
-	if (!stack->first)
-		return ;
-	if (!stack->first->next)
-		return ;
-	if (ft_stack_size(stack) == 2)
-	{
-		ft_swap(stack, op);
-		return ;
-	}
-	first = stack->first;
-	stack->first = stack->first->next;
-	last = stack->first;
-	first->next = NULL;
-	while (last->next)
-		last = last->next;
-	last->next = first;
-	if (op)
-	{
-		ft_putstr(op);
-		ft_putchar('\n');
-	}
+	tmp = stack->first;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp->index);
 }

@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/22 15:38:41 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:48:12 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,12 @@ int	main(int argc, char **argv)
 	}
 	if (ft_issort(stack_a))
 		return (0);
-	// printf("=====a=====\n");
-	//ft_display_stack(stack_a);
-	// if (ft_issort(stack_a))
-	// {
-	// 	// printf("sorted = %d\n", ft_issort(stack_a));
-	// 	ft_free_stack(stack_a);
-	// 	ft_free_stack(stack_b);
-	// 	return (0);
-	// }
-	// sort_simple(stack_a, stack_a);
-	//printf("sorted = %d\n", ft_issort(stack_a));
-	// ft_rotate(stack_a);
-	// printf("=====a=====\n");
-	// ft_display_stack(stack_a);
-	// printf("=====b=====\n");
-	// ft_display_stack(stack_b);
-	// ft_create_index(stack_a);
 	sort(stack_a, stack_b);
-	//ft_display_stack(stack_a);
+	// if (ft_issort(stack_a))
+	// 	printf("SORTED\n");
+	// else
+	// 	printf("NOT GOOD MA DUDE\n");
+	// ft_display_stack(stack_a);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	check_leaks();

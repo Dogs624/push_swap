@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:56:14 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 09:26:32 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 13:38:46 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ static int	ft_check_long(int argc, char **argv)
 
 int	error_handling(int argc, char **argv)
 {
-	if (argc <= 1)
-		return (1);
 	if (!all_number(argc, argv))
 		return (1);
 	if (ft_duplicate(argc, argv))
