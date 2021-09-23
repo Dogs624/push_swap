@@ -6,20 +6,20 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:55:18 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 12:17:25 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:22:53 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_free_stack(t_stack *stack)
+t_stack	*ft_free_stack(t_stack *stack)
 {
 	t_node	*del;
 
 	if (!stack->first)
 	{
 		free(stack);
-		return ;
+		return (NULL);
 	}
 	del = stack->first;
 	if (stack->first)
@@ -33,4 +33,5 @@ void	ft_free_stack(t_stack *stack)
 	}
 	free(del);
 	free(stack);
+	return (NULL);
 }

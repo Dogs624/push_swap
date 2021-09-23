@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/09/21 14:04:21 by jvander-         ###   ########.fr        #
+#    Updated: 2021/09/21 14:38:50 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS	=	$(SOURCES)leacks_cheker_ex.c \
 			$(SOURCES)ft_issort.c \
 			$(SOURCES)markup_greater.c \
 			$(SOURCES)ft_setkeep.c \
+			$(SOURCES)sort.c \
 
 %.o: %.c
 		$(CC) $(FLAGS) -o $@ -c $<

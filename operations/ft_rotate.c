@@ -6,13 +6,13 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 12:38:55 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 15:32:57 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:25:21 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_rotate(t_stack *stack)
+void	ft_rotate(t_stack *stack, char *op)
 {
 	t_node	*last;
 	t_node	*first;
@@ -23,7 +23,7 @@ void	ft_rotate(t_stack *stack)
 		return ;
 	if (!stack->first->next->next)
 	{
-		ft_swap(stack);
+		ft_swap(stack, NULL);
 		return ;
 	}
 	first = stack->first;
@@ -33,8 +33,9 @@ void	ft_rotate(t_stack *stack)
 	while (last->next)
 		last = last->next;
 	last->next = first;
-	if (stack->name == 'a')
-		ft_putstr("ra\n");
-	else
-		ft_putstr("rb\n");
+	if (op)
+	{
+		ft_putstr(op);
+		ft_putchar('\n');
+	}
 }

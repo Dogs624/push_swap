@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:05:17 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:38:41 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ int	main(int argc, char **argv)
 	stack_a = ft_create_stack(argc, argv);
 	if (!stack_a)
 		exit(1);
-	stack_a->name = 'a';
 	stack_b = ft_init_stack();
 	if (!stack_b)
 	{
 		ft_free_stack(stack_a);
 		exit(1);
 	}
-	stack_b->name = 'b';
 	if (ft_issort(stack_a))
 		return (0);
 	// printf("=====a=====\n");
@@ -52,8 +50,8 @@ int	main(int argc, char **argv)
 	// printf("=====b=====\n");
 	// ft_display_stack(stack_b);
 	// ft_create_index(stack_a);
-	ft_setkeep(stack_a);
-	ft_display_stack(stack_a);
+	sort(stack_a, stack_b);
+	//ft_display_stack(stack_a);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	check_leaks();

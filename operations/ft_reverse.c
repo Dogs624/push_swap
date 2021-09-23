@@ -6,13 +6,13 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 13:13:53 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:26:02 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:25:33 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_reverse(t_stack *stack)
+void	ft_reverse(t_stack *stack, char *op)
 {
 	t_node	*last;
 	t_node	*first;
@@ -23,7 +23,7 @@ void	ft_reverse(t_stack *stack)
 		return ;
 	if (!stack->first->next->next)
 	{
-		ft_swap(stack);
+		ft_swap(stack, NULL);
 		return ;
 	}
 	first = stack->first;
@@ -33,8 +33,9 @@ void	ft_reverse(t_stack *stack)
 	stack->first = last->next;
 	stack->first->next = first;
 	last->next = NULL;
-	if (stack->name == 'a')
-		ft_putstr("rra\n");
-	else
-		ft_putstr("rrb\n");
+	if (op)
+	{
+		ft_putstr(op);
+		ft_putchar('\n');
+	}
 }

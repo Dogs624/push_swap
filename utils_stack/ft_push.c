@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:04:30 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 09:27:01 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:30:38 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_push(t_stack *stack, int data)
 	node->data = data;
 	node->index = -1;
 	node->next = stack->first;
+	node->keep = 0;
 	stack->first = node;
 	return (1);
 }
