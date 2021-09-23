@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_get_higher_index.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 12:38:55 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 13:00:34 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/23 12:38:42 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/23 12:44:05 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-void	ft_rotate(t_stack *stack, char *op)
+int	ft_get_higher_index(t_stack *stack)
 {
-	t_node	*last;
-	t_node	*first;
+	int		max;
+	t_node	*tmp;
 
-	if (!stack->first)
-		return ;
-	if (!stack->first->next)
-		return ;
-	if (ft_stack_size(stack) == 2)
+	max = -1;
+	tmp = stack->first;
+	while (tmp)
 	{
-		ft_swap(stack, NULL);
-		return ;
+		if (tmp->index > max)
+			max = tmp->index;
+		tmp = tmp->next;
 	}
-	first = stack->first;
-	stack->first = stack->first->next;
-	last = stack->first;
-	first->next = NULL;
-	while (last->next)
-		last = last->next;
-	last->next = first;
-	if (op)
-	{
-		ft_putstr(op);
-		ft_putchar('\n');
-	}
+	return (max);
 }

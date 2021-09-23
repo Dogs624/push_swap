@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:16:29 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:40:37 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	markup_greater(t_stack *stack);
 void	ft_setkeep(t_stack *stack);
 void	sort(t_stack *stack_a, t_stack *stack_b);
 t_node	*get_head(t_stack *stack);
+int		ft_get_higher_index(t_stack *stack);
 
 #endif
