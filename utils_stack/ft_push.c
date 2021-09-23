@@ -6,21 +6,16 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:04:30 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:30:38 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:27:43 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-int	ft_push(t_stack *stack, int data)
+int	ft_push(t_stack *stack, t_node *node)
 {
-	t_node	*node;
-
-	node = malloc(sizeof(t_node));
 	if (!node)
 		return (0);
-	node->data = data;
-	node->index = -1;
 	node->next = stack->first;
 	node->keep = 0;
 	stack->first = node;

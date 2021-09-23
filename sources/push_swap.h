@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/22 15:03:24 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:16:29 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 	int		max_keep;
 }	t_stack;
 
-int		ft_push(t_stack *stack, int data);
+int		ft_push(t_stack *stack, t_node *data);
 void	check_leaks(void);
 t_stack	*ft_create_stack(int argc, char **argv);
 t_stack	*ft_free_stack(t_stack *stack);

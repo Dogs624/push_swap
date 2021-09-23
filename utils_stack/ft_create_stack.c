@@ -6,11 +6,24 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/21 10:09:45 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:29:27 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
+
+static t_node	*create_node(int data)
+{
+	t_node	*ret;
+	
+	ret = malloc(sizeof(t_node));
+	if (!ret)
+		return (NULL);
+	ret->data = data;
+	ret->index = -1;
+	ret->keep = 0;
+	return (ret);
+}
 
 t_stack	*ft_create_stack(int argc, char **argv)
 {
@@ -23,7 +36,7 @@ t_stack	*ft_create_stack(int argc, char **argv)
 		return (NULL);
 	while (i >= 1)
 	{
-		if (!ft_push(ret, ft_atoi(argv[i])))
+		if (!ft_push(ret, create_node(ft_atoi(argv[i]))))
 		{
 			ft_free_stack(ret);
 			return (NULL);
