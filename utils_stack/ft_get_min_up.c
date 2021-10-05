@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_higher_index.c                              :+:      :+:    :+:   */
+/*   ft_get_min_up.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 12:38:42 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:25:23 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/28 14:00:12 by jvander-          #+#    #+#             */
+/*   Updated: 2021/09/30 13:49:09 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-int	ft_get_higher_index(t_stack *stack)
+t_node	*ft_get_min_up(t_stack *stack, int min, int max)
 {
-	int		max;
 	t_node	*tmp;
 
-	max = -1;
 	tmp = stack->first;
 	while (tmp)
 	{
-		if (tmp->index > max)
-			max = tmp->index;
+		if (tmp->index >= min && tmp->index <= max)
+			return (tmp);
 		tmp = tmp->next;
 	}
-	return (max);
+	return (NULL);
 }

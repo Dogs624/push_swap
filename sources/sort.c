@@ -5,96 +5,78 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 13:45:35 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 15:34:43 by jvander-         ###   ########.fr       */
+/*   Created: 2021/09/28 13:44:14 by jvander-          #+#    #+#             */
+/*   Updated: 2021/10/04 17:36:47 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_put_higher_up(t_stack *stack)
-{
-	int		max_index;
-	t_node	*tmp;
-
-	tmp = stack->first;
-	max_index = ft_get_higher_index(stack);
-	if (ft_get_last_node_index(stack) == max_index)
-	{
-		ft_reverse(stack, "rrb");
+static void	ft_set_chunk(t_stack *stack, t_chunk **chunk, int nbr_turn)
+{	
+	if (!stack->first)
 		return ;
-	}
-	while (tmp->index != max_index)
+	if (nbr_turn == 1)
+		(*chunk)->min = 0;
+	else
+		(*chunk)->min = (*chunk)->max + 1;
+	if (stack->initial_size < 100)
 	{
-		if (ft_stack_size(stack) == 2)
-			ft_swap(stack, "sb");
-		else
-			ft_rotate(stack, "rb");
-		tmp = stack->first;
+		(*chunk)->max_size = 1;
+		(*chunk)->max = ft_stack_size(stack);
 	}
-}
-
-static int	need_sa(t_stack *stack_a)
-{
-	t_node	*head;
-	head = get_head(stack_a);
-
-	ft_swap(stack_a, NULL);
-	ft_setkeep(stack_a);
-	if (get_head(stack_a)->markup_greater < head->markup_greater
-		|| ft_issort(stack_a))
+	else if (stack->initial_size >= 100 && stack->initial_size < 500)
 	{
-		ft_swap(stack_a, NULL);
-		ft_setkeep(stack_a);
-		return (1);
+		(*chunk)->max_size = NBR_CHUNKS_100;
+		(*chunk)->max = (stack->initial_size / NBR_CHUNKS_100 * nbr_turn) - 1;
 	}
-	ft_swap(stack_a, NULL);
-	ft_setkeep(stack_a);
-	return (0);
-}
-
-static int	ft_nbr_false(t_stack *stack)
-{
-	t_node	*tmp;
-	int		ret;
-
-	ret = 0;
-	tmp = stack->first;
-	while (tmp)
+	else
 	{
-		if (!tmp->keep)
-			ret++;
-		tmp = tmp->next;
+		(*chunk)->max_size = NBR_CHUNKS_500;
+		(*chunk)->max = (stack->initial_size / NBR_CHUNKS_500 * nbr_turn) - 1;
 	}
-	return (ret);
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
-{	
-	if (ft_issort(stack_a))
+{
+	t_node	*hold_first;
+	t_node	*hold_second;
+	t_chunk	*chunk;
+	int		nbr_turn;
+	int		count;
+
+	nbr_turn = 1;
+	count = 0;
+	chunk = malloc(sizeof(t_chunk));
+	if (!chunk)
+	{
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
 		return ;
-	ft_setkeep(stack_a);
-	while (ft_nbr_false(stack_a) && !ft_issort(stack_a))
-	{
-		if (need_sa(stack_a))
-			ft_swap(stack_a, "sa");
-		else if (!stack_a->first->keep)
-			ft_push_stack(stack_a, stack_b, "pb");
-		else
-			ft_rotate(stack_a, "ra");
 	}
-	while (stack_b->first)
+	ft_set_chunk(stack_a, &chunk, nbr_turn);
+	while (nbr_turn <= chunk->max_size)
 	{
-		ft_put_higher_up(stack_b);
-		while ((stack_a->first->index) - 1 != stack_b->first->index)
-			ft_rotate(stack_a, "ra");
-		ft_push_stack(stack_b, stack_a, "pa");
+		hold_first = ft_get_min_up(stack_a, chunk->min, chunk->max);
+		hold_second = ft_get_min_down(stack_a, chunk->min, chunk->max);
+		while (hold_first->index != hold_second->index)
+		{
+			if (nbr_move(stack_a, hold_first) < nbr_move(stack_a, hold_second))
+				move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
+			else if (nbr_move(stack_a, hold_first) > nbr_move(stack_a, hold_second))
+				move_push(stack_a, stack_b, nbr_move(stack_a, hold_second), -1);
+			else
+				if (hold_first->index < hold_second->index)
+					move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
+				else
+					move_push(stack_a, stack_b, nbr_move(stack_a, hold_second), -1);
+			hold_first = ft_get_min_up(stack_a, chunk->min, chunk->max);
+			hold_second = ft_get_min_down(stack_a, chunk->min, chunk->max);
+		}
+		move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
+		nbr_turn++;
+		ft_set_chunk(stack_a, &chunk, nbr_turn);
 	}
-	if (!ft_get_last_node_index(stack_a))
-		ft_reverse(stack_a, "rra");
-	else
-	{
-		while (stack_a->first->index)
-			ft_rotate(stack_a, "ra");
-	}
+	push_to_a(stack_a, stack_b);
+	free(chunk);
 }

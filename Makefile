@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/09/23 14:23:17 by jvander-         ###   ########.fr        #
+#    Updated: 2021/10/04 15:59:28 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,18 +31,23 @@ SRCS_UTILS_STACK	=	$(UTILS)ft_push.c \
 						$(UTILS)ft_init_stack.c \
 						$(UTILS)ft_pop.c \
 						$(UTILS)ft_stack_size.c \
-						$(UTILS)ft_create_index.c \
 						$(UTILS)ft_get_min.c \
-						$(UTILS)ft_get_higher_index.c \
-						$(UTILS)ft_get_last_node_index.c \
-
+						$(UTILS)ft_create_index.c \
+						$(UTILS)ft_get_min_up.c \
+						$(UTILS)ft_create_pos.c \
+						$(UTILS)ft_get_min_down.c \
+						$(UTILS)ft_get_max.c \
+						$(UTILS)ft_get_last.c \
+						
 SRCS	=	$(SOURCES)leacks_cheker_ex.c \
 			$(SOURCES)push_swap.c \
 			$(SOURCES)error_handling.c \
 			$(SOURCES)ft_issort.c \
-			$(SOURCES)markup_greater.c \
-			$(SOURCES)ft_setkeep.c \
+			$(SOURCES)nbr_move.c \
+			$(SOURCES)move_push.c \
+			$(SOURCES)push_to_a.c \
 			$(SOURCES)sort.c \
+			$(SOURCES)sort_simple.c \
 
 %.o: %.c
 		$(CC) $(FLAGS) -o $@ -c $<

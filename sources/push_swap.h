@@ -6,12 +6,14 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 14:23:11 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:57:37 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define NBR_CHUNKS_100 5
+# define NBR_CHUNKS_500 11
 
 # include <stdlib.h>
 # include "limits.h"
@@ -23,15 +25,21 @@ typedef struct s_node
 	int				data;
 	struct s_node	*next;
 	int				index;
-	int				keep;
-	int				markup_greater;
+	int				pos;
 }	t_node;
 
 typedef struct s_stack
 {
 	t_node	*first;
-	int		max_keep;
+	int		initial_size;
 }	t_stack;
+
+typedef struct s_chunk
+{
+	int	min;
+	int	max;
+	int	max_size;
+}	t_chunk;
 
 int		ft_push(t_stack *stack, t_node *data);
 void	check_leaks(void);
@@ -49,11 +57,14 @@ int		ft_issort(t_stack *stack);
 int		ft_stack_size(t_stack *stack);
 void	ft_create_index(t_stack *stack);
 t_node	*ft_get_min(t_stack *stack);
-void	markup_greater(t_stack *stack);
-void	ft_setkeep(t_stack *stack);
+t_node	*ft_get_min_up(t_stack *stack, int min, int max);
+void	ft_create_pos(t_stack *stack);
+t_node	*ft_get_min_down(t_stack *stack, int min, int max);
+int		nbr_move(t_stack *stack, t_node *node);
+void	move_push(t_stack *stack_a, t_stack *stack_b, int nbr_it, int op);
+t_node	*ft_get_max(t_stack *stack);
+void	push_to_a(t_stack *stack_a, t_stack *stack_b);
 void	sort(t_stack *stack_a, t_stack *stack_b);
-t_node	*get_head(t_stack *stack);
-int		ft_get_higher_index(t_stack *stack);
-int	ft_get_last_node_index(t_stack *stack);
-
+void	sort_simple(t_stack *stack_a, t_stack *stack_b);
+t_node	*ft_get_last(t_stack *stack);
 #endif

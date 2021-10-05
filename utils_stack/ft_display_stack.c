@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:07:18 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:13:35 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:43:48 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_display_stack(t_stack *stack)
 	while (use)
 	{
 		printf("%d ---- ", use->data);
-		printf("m - %d ", use->markup_greater);
-		printf("k - %d ", use->keep);
 		printf("i - %d\n", use->index);
 		use = use->next;
 	}

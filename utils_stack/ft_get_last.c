@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_min.c                                       :+:      :+:    :+:   */
+/*   ft_get_last.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 10:10:29 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/01 10:55:39 by jvander-         ###   ########.fr       */
+/*   Created: 2021/10/04 11:15:08 by jvander-          #+#    #+#             */
+/*   Updated: 2021/10/04 11:16:29 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../sources/push_swap.h"
 
-t_node	*ft_get_min(t_stack *stack)
+t_node	*ft_get_last(t_stack *stack)
 {
-	t_node	*tmp;
-	t_node	*min;
+	t_node	*ret;
 
-	tmp = stack->first;
-	while (tmp->index != -1)
-		tmp = tmp->next;
-	min = tmp;
-	while (tmp)
-	{
-		if (tmp->index == -1)
-		{
-			if (min->data > tmp->data)
-				min = tmp;
-		}
-		tmp = tmp->next;
-	}
-	return (min);
+	ret = stack->first;
+	while (ret->next)
+		ret = ret->next;
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:29:27 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/01 10:34:10 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 static t_node	*create_node(int data)
 {
 	t_node	*ret;
-	
+
 	ret = malloc(sizeof(t_node));
 	if (!ret)
 		return (NULL);
 	ret->data = data;
 	ret->index = -1;
-	ret->keep = 0;
 	return (ret);
 }
 
@@ -44,5 +43,7 @@ t_stack	*ft_create_stack(int argc, char **argv)
 		i--;
 	}
 	ft_create_index(ret);
+	ft_create_pos(ret);
+	ret->initial_size = ft_stack_size(ret);
 	return (ret);
 }
