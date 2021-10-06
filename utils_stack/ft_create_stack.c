@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:28:36 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 12:15:20 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/06 15:55:13 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,12 @@ static t_node	*create_node(int data)
 t_stack	*ft_create_stack(int argc, char **argv)
 {
 	t_stack	*ret;
-	int		end;
 
 	argc -= 1;
-	end = 1;
-	if (ft_tabsize(argv) > argc + 1)
-	{
-		argc++;
-		end = 0;
-	}
 	ret = ft_init_stack();
 	if (!ret)
 		return (NULL);
-	while (argc >= end)
+	while (argc >= 0)
 	{
 		if (!ft_push(ret, create_node(ft_atoi(argv[argc--]))))
 		{

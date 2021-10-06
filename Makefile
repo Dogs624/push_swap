@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/10/06 11:05:08 by jvander-         ###   ########.fr        #
+#    Updated: 2021/10/06 17:15:48 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRCS_OPERATIONS		=	$(OPERATIONS)ft_push_stack.c \
 SRCS_UTILS_STACK	=	$(UTILS)ft_push.c \
 						$(UTILS)ft_create_stack.c \
 						$(UTILS)ft_free_stack.c \
-						$(UTILS)ft_display_stack.c \
 						$(UTILS)ft_init_stack.c \
 						$(UTILS)ft_pop.c \
 						$(UTILS)ft_stack_size.c \

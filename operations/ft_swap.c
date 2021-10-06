@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:29 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/23 12:56:03 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/06 14:20:54 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_swap(t_stack *stack, char *op)
 	first->next = tmp;
 	if (op)
 	{
-		ft_putstr(op);
-		ft_putchar('\n');
+		ft_putstr_fd(op, 1);
+		ft_putchar_fd('\n', 1);
 	}
 }

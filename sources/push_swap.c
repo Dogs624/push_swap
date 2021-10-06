@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 12:47:01 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/06 17:16:11 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,23 @@ static void	sorting(t_stack *stack_a, t_stack *stack_b)
 
 static int	set_tab_use(int argc, char **argv, char ***to_use, int *size_use)
 {
+	
 	if (argc == 2)
 	{
 		*to_use = ft_split(argv[1], ' ');
-		*size_use = 0;
-		while ((*to_use)[(*size_use)])
-			(*size_use)++;
-		(*size_use)--;
+		*size_use = ft_tabsize((*to_use));
+		if (error_handling((*size_use), (*to_use)))
+		{
+			ft_putstr_fd("Error\n", 2);
+			ft_free((*to_use), (*size_use));
+			return (0);
+		}
 	}
 	else
 	{
-		(*to_use) = argv;
-		(*size_use) = argc;
+		(*to_use) = argv + 1;
+		(*size_use) = argc - 1;
+
 	}
 	return (1);
 }
@@ -58,11 +63,11 @@ int	main(int argc, char **argv)
 	char	**to_use;
 	int		size_use;
 
-	if (!set_tab_use(argc, argv, &to_use, &size_use))
+	if (!set_tab_use(argc, argv, &to_use, &size_use) || !size_use)
 		exit(0);
 	if (error_handling(size_use, to_use))
 	{
-		ft_putstr("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
 	initialise(&stack_a, &stack_b, to_use, size_use);
