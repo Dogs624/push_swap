@@ -5,77 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 13:44:14 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/04 17:36:47 by jvander-         ###   ########.fr       */
+/*   Created: 2021/10/05 10:17:20 by jvander-          #+#    #+#             */
+/*   Updated: 2021/10/06 12:47:34 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_set_chunk(t_stack *stack, t_chunk **chunk, int nbr_turn)
-{	
-	if (!stack->first)
-		return ;
-	if (nbr_turn == 1)
-		(*chunk)->min = 0;
+static t_chunk	*ft_set_chunk(t_stack *stack_a)
+{
+	t_chunk	*ret;
+
+	ret = malloc(sizeof(t_chunk));
+	if (!ret)
+		return (NULL);
+	if (stack_a->initial_size < 100)
+		ret->max_size = 1;
+	else if (stack_a->initial_size >= 100 && stack_a->initial_size < 500)
+		ret->max_size = 5;
 	else
-		(*chunk)->min = (*chunk)->max + 1;
-	if (stack->initial_size < 100)
+		ret->max_size = 11;
+	ret->min = 0;
+	ret->max = stack_a->initial_size / ret->max_size - 1;
+	return (ret);
+}
+
+static void	ft_set_new_chunk(t_stack *stack, t_chunk **chunk)
+{
+	(*chunk)->min = (*chunk)->max + 1;
+	(*chunk)->max = (*chunk)->max + (stack->initial_size / (*chunk)->max_size);
+}
+
+static void	main_algo(t_stack *stack_a, t_stack *stack_b, t_chunk *chunk)
+{
+	t_node	*first;
+	t_node	*second;
+
+	first = ft_get_min_up(stack_a, chunk->min, chunk->max);
+	second = ft_get_min_down(stack_a, chunk->min, chunk->max);
+	while (first->index != second->index)
 	{
-		(*chunk)->max_size = 1;
-		(*chunk)->max = ft_stack_size(stack);
+		if (nbr_move(stack_a, first) < nbr_move(stack_a, second))
+			move_push(stack_a, stack_b, nbr_move(stack_a, first), 1);
+		else if (nbr_move(stack_a, first) > nbr_move(stack_a, second))
+			move_push(stack_a, stack_b, nbr_move(stack_a, second), -1);
+		else
+		{
+			if (first->index < second->index)
+				move_push(stack_a, stack_b, nbr_move(stack_a, first), 1);
+			else
+				move_push(stack_a, stack_b, nbr_move(stack_a, first), -1);
+		}
+		first = ft_get_min_up(stack_a, chunk->min, chunk->max);
+		second = ft_get_min_down(stack_a, chunk->min, chunk->max);
 	}
-	else if (stack->initial_size >= 100 && stack->initial_size < 500)
-	{
-		(*chunk)->max_size = NBR_CHUNKS_100;
-		(*chunk)->max = (stack->initial_size / NBR_CHUNKS_100 * nbr_turn) - 1;
-	}
+	if (first->pos <= ft_stack_size(stack_a) / 2)
+		move_push(stack_a, stack_b, nbr_move(stack_a, first), 1);
 	else
-	{
-		(*chunk)->max_size = NBR_CHUNKS_500;
-		(*chunk)->max = (stack->initial_size / NBR_CHUNKS_500 * nbr_turn) - 1;
-	}
+		move_push(stack_a, stack_b, nbr_move(stack_a, second), -1);
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*hold_first;
-	t_node	*hold_second;
 	t_chunk	*chunk;
-	int		nbr_turn;
-	int		count;
 
-	nbr_turn = 1;
-	count = 0;
-	chunk = malloc(sizeof(t_chunk));
+	chunk = ft_set_chunk(stack_a);
 	if (!chunk)
 	{
 		ft_free_stack(stack_a);
 		ft_free_stack(stack_b);
 		return ;
 	}
-	ft_set_chunk(stack_a, &chunk, nbr_turn);
-	while (nbr_turn <= chunk->max_size)
+	while (stack_a->first && chunk->min < stack_a->initial_size)
 	{
-		hold_first = ft_get_min_up(stack_a, chunk->min, chunk->max);
-		hold_second = ft_get_min_down(stack_a, chunk->min, chunk->max);
-		while (hold_first->index != hold_second->index)
-		{
-			if (nbr_move(stack_a, hold_first) < nbr_move(stack_a, hold_second))
-				move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
-			else if (nbr_move(stack_a, hold_first) > nbr_move(stack_a, hold_second))
-				move_push(stack_a, stack_b, nbr_move(stack_a, hold_second), -1);
-			else
-				if (hold_first->index < hold_second->index)
-					move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
-				else
-					move_push(stack_a, stack_b, nbr_move(stack_a, hold_second), -1);
-			hold_first = ft_get_min_up(stack_a, chunk->min, chunk->max);
-			hold_second = ft_get_min_down(stack_a, chunk->min, chunk->max);
-		}
-		move_push(stack_a, stack_b, nbr_move(stack_a, hold_first), 1);
-		nbr_turn++;
-		ft_set_chunk(stack_a, &chunk, nbr_turn);
+		main_algo(stack_a, stack_b, chunk);
+		ft_set_new_chunk(stack_a, &chunk);
 	}
 	push_to_a(stack_a, stack_b);
 	free(chunk);

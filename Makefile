@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/10/04 15:59:28 by jvander-         ###   ########.fr        #
+#    Updated: 2021/10/06 11:05:08 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRCS_UTILS_STACK	=	$(UTILS)ft_push.c \
 						$(UTILS)ft_get_min_down.c \
 						$(UTILS)ft_get_max.c \
 						$(UTILS)ft_get_last.c \
+						$(UTILS)ft_tabsize.c \
 						
-SRCS	=	$(SOURCES)leacks_cheker_ex.c \
-			$(SOURCES)push_swap.c \
+SRCS	=	$(SOURCES)push_swap.c \
 			$(SOURCES)error_handling.c \
 			$(SOURCES)ft_issort.c \
 			$(SOURCES)nbr_move.c \

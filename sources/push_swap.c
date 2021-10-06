@@ -6,44 +6,72 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/04 13:03:51 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/06 12:47:01 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+static void	initialise(t_stack **s_a, t_stack **s_b, char **args, int size)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	(*s_a) = ft_create_stack(size, args);
+	if (!(*s_a))
+		exit(1);
+	(*s_b) = ft_init_stack();
+	if (!(*s_b))
+	{
+		ft_free_stack((*s_a));
+		exit(1);
+	}
+}
 
-	if (error_handling(argc, argv))
-	{
-		ft_putstr("Error\n");
-		exit(1);
-	}
-	stack_a = ft_create_stack(argc, argv);
-	if (!stack_a)
-		exit(1);
-	stack_b = ft_init_stack();
-	if (!stack_b)
-	{
-		ft_free_stack(stack_a);
-		exit(1);
-	}
-	if (ft_issort(stack_a))
-		return (0);
+static void	sorting(t_stack *stack_a, t_stack *stack_b)
+{
 	if (ft_stack_size(stack_a) <= 5)
 		sort_simple(stack_a, stack_b);
 	else
 		sort(stack_a, stack_b);
-	// if (ft_issort(stack_a))
-	// 	printf("SORTED\n");
-	// else
-	// 	printf("WTF NOOB\n");
-	// ft_display_stack(stack_a);
+}
+
+static int	set_tab_use(int argc, char **argv, char ***to_use, int *size_use)
+{
+	if (argc == 2)
+	{
+		*to_use = ft_split(argv[1], ' ');
+		*size_use = 0;
+		while ((*to_use)[(*size_use)])
+			(*size_use)++;
+		(*size_use)--;
+	}
+	else
+	{
+		(*to_use) = argv;
+		(*size_use) = argc;
+	}
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	char	**to_use;
+	int		size_use;
+
+	if (!set_tab_use(argc, argv, &to_use, &size_use))
+		exit(0);
+	if (error_handling(size_use, to_use))
+	{
+		ft_putstr("Error\n");
+		exit(1);
+	}
+	initialise(&stack_a, &stack_b, to_use, size_use);
+	if (ft_issort(stack_a))
+		return (0);
+	sorting(stack_a, stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
-	check_leaks();
+	if (argc == 2)
+		ft_free(to_use, size_use);
 	return (0);
 }
