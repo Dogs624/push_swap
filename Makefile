@@ -6,7 +6,7 @@
 #    By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 10:07:20 by jvander-          #+#    #+#              #
-#    Updated: 2021/10/07 10:33:35 by jvander-         ###   ########.fr        #
+#    Updated: 2021/10/07 11:00:35 by jvander-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS	=	$(SOURCES)push_swap.c \
 			$(SOURCES)push_to_a.c \
 			$(SOURCES)sort.c \
 			$(SOURCES)sort_simple.c \
+			$(SOURCES)ft_free_all.c \
 
 %.o: %.c
 		$(CC) $(FLAGS) -o $@ -c $<

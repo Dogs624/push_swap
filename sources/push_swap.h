@@ -6,15 +6,13 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/07 10:32:44 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:01:50 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include "limits.h"
 # include "../libft/libft.h"
 
 typedef struct s_node
@@ -45,6 +43,7 @@ int		ft_issort(t_stack *stack);
 int		ft_stack_size(t_stack *stack);
 int		nbr_move(t_stack *stack, t_node *node);
 int		ft_tabsize(char **tab);
+int		ft_free_all(t_stack *stack_a, t_stack *stack_b, char **args, int check);
 void	ft_swap(t_stack *stack, char *op);
 void	ft_rotate(t_stack *stack, char *op);
 void	ft_reverse(t_stack *stack, char *op);
