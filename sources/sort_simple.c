@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:35:37 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 16:58:15 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:34:09 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,57 +41,62 @@ static void	sort_simple_3(t_stack *stack_a)
 	ft_reverse(stack_a, "rra");
 }
 
-static void	prepare_to_push(t_stack *stack_a, t_stack *stack_b)
+static t_node	*ft_get_min_stack(t_stack *stack)
 {
-	while (stack_b->first)
+	t_node	*tmp;
+	t_node	*min;
+
+	tmp = stack->first;
+	min = stack->first;
+	while (tmp)
 	{
-		if (stack_a->first->index + 1 == stack_b->first->index)
-		{
+		if (tmp->index < min->index)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	return (min);
+}
+
+static void	put_min_up(t_stack *stack_a)
+{
+	t_node	*min;
+
+	min = ft_get_min_stack(stack_a);
+	if (min->pos <= ft_stack_size(stack_a) / 2)
+	{
+		while (stack_a->first->index != min->index)
 			ft_rotate(stack_a, "ra");
-			ft_push_stack(stack_b, stack_a, "pa");
-		}
-		else if (ft_get_last(stack_a)->index - 1 == stack_b->first->index)
-		{
+	}
+	else
+	{
+		while (stack_a->first->index != min->index)
 			ft_reverse(stack_a, "rra");
-			ft_push_stack(stack_b, stack_a, "pa");
-		}
-		else
-		{
-			if (ft_stack_size(stack_b) == 2)
-			{
-				if (stack_b->first->index == 0
-					|| stack_b->first->index == stack_a->initial_size - 1)
-					ft_push_stack(stack_b, stack_a, "pa");
-			}
-			ft_rotate(stack_a, "ra");
-		}
 	}
 }
 
 void	sort_simple(t_stack *stack_a, t_stack *stack_b)
 {
 	if (ft_stack_size(stack_a) == 2)
-		return (ft_swap(stack_a, "sa"));
-	if (ft_stack_size(stack_a) == 3)
-		return (sort_simple_3(stack_a));
-	if (ft_stack_size(stack_a) == 4)
+		ft_swap(stack_a, "sa");
+	else if (ft_stack_size(stack_a) == 3)
+		sort_simple_3(stack_a);
+	else if (ft_stack_size(stack_a) == 4)
 	{
+		put_min_up(stack_a);
 		ft_push_stack(stack_a, stack_b, "pb");
 		sort_simple_3(stack_a);
-		prepare_to_push(stack_a, stack_b);
+		ft_push_stack(stack_b, stack_a, "pa");
 	}
-	if (ft_stack_size(stack_a) == 5)
-	{
-		ft_push_stack(stack_a, stack_b, "pb");
-		ft_push_stack(stack_a, stack_b, "pb");
-		sort_simple_3(stack_a);
-		prepare_to_push(stack_a, stack_b);
-	}
-	if (ft_get_last(stack_a)->index == 0)
-		ft_reverse(stack_a, "rra");
 	else
 	{
-		while (stack_a->first->index != 0)
-			ft_rotate(stack_a, "ra");
+		put_min_up(stack_a);
+		ft_push_stack(stack_a, stack_b, "pb");
+		put_min_up(stack_a);
+		ft_push_stack(stack_a, stack_b, "pb");
+		if (stack_b->first->index < stack_b->first->next->index)
+			ft_swap(stack_b, "sb");
+		sort_simple_3(stack_a);
+		ft_push_stack(stack_b, stack_a, "pa");
+		ft_push_stack(stack_b, stack_a, "pa");
 	}
 }

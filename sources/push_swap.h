@@ -6,13 +6,15 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 17:15:57 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:32:44 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include "limits.h"
 # include "../libft/libft.h"
 
 typedef struct s_node
