@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 12:24:46 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:40:34 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,8 @@ static int	set_tab_use(int argc, char **argv, char ***to_use, int *size_use)
 		{
 			ft_free((*to_use), (*size_use));
 			ft_putstr_fd("Error\n", 2);
-			return (0);
 		}
-		return (2);
+		return (0);
 	}
 	else
 	{
@@ -94,10 +93,10 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	malloc_argv = set_tab_use(argc, argv, &to_use, &size_use);
-	if (!malloc_argv || !size_use)
+	if (argc == 1)
 		return (0);
-	if (error_handling(size_use, to_use))
+	malloc_argv = set_tab_use(argc, argv, &to_use, &size_use);
+	if (!malloc_argv || !size_use || error_handling(size_use, to_use))
 	{
 		ft_free_all(stack_a, stack_b, to_use);
 		ft_putstr_fd("Error\n", 2);
