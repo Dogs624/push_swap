@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 13:49:45 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:06:14 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static char	**parsing_argv(char **argv, int *size_use)
 		if (!tmp)
 			return (NULL);
 		size_ret += ft_tabsize(tmp);
+		if (!ft_tabsize(tmp))
+			return (ft_free(tmp, ft_tabsize(tmp)));
 		i++;
 		ft_free(tmp, ft_tabsize(tmp));
 	}
