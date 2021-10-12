@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:56:14 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 16:43:46 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:55:19 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ static int	ft_is_number(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-')
-		i++;
 	if (!str[i])
 		return (0);
+	if (str[i] == '-')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
+	if (str[0] == '-' && i == 1)
+		return (0);
 	return (1);
 }
 
@@ -35,7 +37,7 @@ static int	all_number(int argc, char **argv)
 	int	i;
 
 	i = 0;
-	while (i < argc)
+	while (argv[i] && i < argc)
 	{
 		if (!ft_is_number(argv[i]))
 			return (0);
