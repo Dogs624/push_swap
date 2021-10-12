@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 13:13:53 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/06 14:20:43 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:42:59 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ void	ft_reverse(t_stack *stack, char *op)
 		ft_putstr_fd(op, 1);
 		ft_putchar_fd('\n', 1);
 	}
+}
+
+void	ft_reverse_both(t_stack *stack_a, t_stack *stack_b, char *op)
+{
+	ft_reverse(stack_a, NULL);
+	ft_reverse(stack_b, op);
 }

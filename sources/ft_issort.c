@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:18:41 by jvander-          #+#    #+#             */
-/*   Updated: 2021/09/15 14:46:09 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:47:22 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_issort(t_stack *stack)
 {
 	t_node	*current;
 
+	if (!stack)
+		return (1);
 	if (!stack->first)
 		return (1);
 	if (!stack->first->next)

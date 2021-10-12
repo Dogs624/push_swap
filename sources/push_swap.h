@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:01:33 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 12:17:34 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:42:31 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	move_push(t_stack *stack_a, t_stack *stack_b, int nbr_it, int op);
 void	push_to_a(t_stack *stack_a, t_stack *stack_b);
 void	sort(t_stack *stack_a, t_stack *stack_b);
 void	sort_simple(t_stack *stack_a, t_stack *stack_b);
+void	ft_reverse_both(t_stack *stack_a, t_stack *stack_b, char *op);
+void	ft_rotate_both(t_stack *stack_a, t_stack *stack_b, char *op);
 t_stack	*ft_create_stack(int argc, char **argv);
 t_stack	*ft_free_stack(t_stack *stack);
 t_stack	*ft_init_stack(void);
