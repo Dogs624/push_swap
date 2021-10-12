@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 12:17:07 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:24:46 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	sorting(t_stack *stack_a, t_stack *stack_b)
 		sort(stack_a, stack_b);
 }
 
-static char	**weird(char **argv, int *size_use)
+static char	**parsing_argv(char **argv, int *size_use)
 {
 	char	**tmp;
 	int		i;
@@ -79,7 +79,7 @@ static int	set_tab_use(int argc, char **argv, char ***to_use, int *size_use)
 	{
 		(*to_use) = argv + 1;
 		(*size_use) = argc - 1;
-		(*to_use) = weird((*to_use), size_use);
+		(*to_use) = parsing_argv((*to_use), size_use);
 	}
 	return (1);
 }
