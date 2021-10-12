@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 15:06:14 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:07:58 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 		return (ft_free_all(stack_a, stack_b, to_use));
 	}
 	if (!initialise(&stack_a, &stack_b, to_use, size_use))
-		ft_free_all(stack_a, stack_b, to_use);
+		return (ft_free_all(stack_a, stack_b, to_use));
 	if (ft_issort(stack_a))
 		return (ft_free_all(stack_a, stack_b, to_use));
 	sorting(stack_a, stack_b);
