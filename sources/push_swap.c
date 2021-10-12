@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 15:14:22 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:18:25 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ static int	set_tab_use(int argc, char **argv, char ***to_use, int *size_use)
 			return (0);
 		*size_use = ft_tabsize((*to_use));
 		if (error_handling((*size_use), (*to_use)))
-		{
-			ft_free((*to_use), (*size_use));
-			ft_putstr_fd("Error\n", 2);
-		}
+			return (0);
 	}
 	else
 	{
