@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 14:00:59 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 15:07:58 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:14:22 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1)
+	if (argc <= 1)
 		return (0);
 	malloc_argv = set_tab_use(argc, argv, &to_use, &size_use);
 	if (!to_use || !malloc_argv || !size_use

@@ -6,7 +6,7 @@
 /*   By: jvander- <jvander-@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:56:14 by jvander-          #+#    #+#             */
-/*   Updated: 2021/10/12 10:55:19 by jvander-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:14:48 by jvander-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	all_number(int argc, char **argv)
 	i = 0;
 	while (argv[i] && i < argc)
 	{
+		if (!ft_strlen(argv[i]))
+			return (0);
 		if (!ft_is_number(argv[i]))
 			return (0);
 		i++;
